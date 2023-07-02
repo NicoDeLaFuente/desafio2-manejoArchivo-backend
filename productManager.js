@@ -43,9 +43,9 @@ class ProductManager {
         }
     }
 
-    getProductById (id) {
-        const products = this.getProducts();
-        const index = products.findIndex(product => product.id === id)
+    async getProductById (id) {
+        const products = await this.getProducts();
+        const index = await products.findIndex(product => product.id === id)
 
         if (index === -1) {
             throw new Error ("El ID no se ha encontrado en los productos.")
@@ -54,9 +54,9 @@ class ProductManager {
         }
     }
 
-    updateProduct(id, product) {
-        const products = this.getProducts();
-        const index = products.findIndex(product => product.id === id)
+    async updateProduct(id, product) {
+        const products = await this.getProducts();
+        const index = await products.findIndex(product => product.id === id)
 
         if (index === -1) {
             throw new Error("El ID no se ha encontrado");
@@ -71,9 +71,9 @@ class ProductManager {
     }
 
 
-    deleteProduct(id) {
-        const products = this.getProducts();
-        const index = products.findIndex(product => product.id === id);
+    async deleteProduct(id) {
+        const products = await this.getProducts();
+        const index = await products.findIndex(product => product.id === id);
 
         if(index !== -1) {
             products.splice(index, 1); 
@@ -109,10 +109,10 @@ const newProduct2 = {
 }
 
 const productManager = new ProductManager('./products.json');
-productManager.addProduct(newProduct);
-productManager.addProduct(newProduct2);
+/* productManager.addProduct(newProduct);
+productManager.addProduct(newProduct2); */
 
 /* productManager.getProducts(); */
-/*productManager.getProductById(1);
-productManager.updateProduct(1, {"title": "producto1Actualizado", "stock": 200})
-productManager.deleteProduct(1) */
+/* productManager.getProductById(1); */
+/* productManager.updateProduct(1, {"title": "producto1Actualizado", "stock": 200}) */
+productManager.deleteProduct(1)
